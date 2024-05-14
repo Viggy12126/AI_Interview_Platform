@@ -1,6 +1,6 @@
 import express from "express";
-import { getMyProfile, login, logout, register } from "../controllers/userController.js";
-import { isAuthenticated } from "../middlewares/auth.js";
+import { getAllUsers, getMyProfile, login, logout, register, updateUserRole } from "../controllers/userController.js";
+import { authorizeAdmin, isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -11,5 +11,9 @@ router.route('/login').post(login);
 router.route('/logout').get(logout);
 
 router.route('/getprofile').get(isAuthenticated,getMyProfile)
+
+router.route('/admin/users').get(isAuthenticated,authorizeAdmin,getAllUsers);
+
+router.route('/admin/user/:id').put(isAuthenticated,authorizeAdmin,updateUserRole);
 
 export default router;

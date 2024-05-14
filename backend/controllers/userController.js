@@ -73,3 +73,31 @@ export const login = catchAsyncError(async (req, res, next) => {
       user,
     });
   });
+
+  //Admin
+
+  
+export const getAllUsers = catchAsyncError(async (req, res, next) => {
+  const users = await User.find({});
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+export const updateUserRole = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) return next(new ErrorHandler("User not found", 404));
+
+  if (user.role === "user") user.role = "admin";
+  else user.role = "user";
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Role Updated",
+  });
+});
