@@ -19,6 +19,14 @@ app.use(
 );
 app.use(cookieParser());
 
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL,
+//     credentials: true,
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//   })
+// );
+
 // Importing & Using Routes
 import user from "./routes/userRoutes.js";
 import ErrorMiddleware from "./middlewares/Error.js";

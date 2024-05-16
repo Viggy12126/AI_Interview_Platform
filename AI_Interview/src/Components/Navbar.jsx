@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({isAuthenticated=false,user}) => {
 
-  const user=true;
-  const name="abc";
+  // const user=false;
+  // const name="abc";
 
   return (
     <div className='flex justify-between'>
@@ -19,10 +19,10 @@ const Navbar = () => {
         </div>
 
         <div className=' text-white text-2xl'>
-          {user==true ? (
-     <p>Welcome, {name}!</p>
+          {isAuthenticated==true ? (
+     <p>Welcome, {user.name}!</p>
           ):(
-            <Link to={'/signup'}>
+            <Link to={'/register'}>
             <p>Sign up</p>
             </Link>
           )}

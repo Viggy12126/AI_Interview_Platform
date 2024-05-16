@@ -4,7 +4,9 @@ import { signupFields } from "../Constants/formFields.jsx";
 import Input from './Input';
 import FormAction from './FormAction';
 import { Link } from 'react-router-dom';
-import Login from './Login.jsx';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/user.js';
+
 
 const fields=signupFields;
 let fieldsState={};
@@ -14,13 +16,29 @@ fields.forEach(field => fieldsState[field.id]='');
 const Register = () => {
 
     const [signupState,setSignupState]=useState(fieldsState);
+    const dispatch=useDispatch();
 
     const handleChange=(e)=>setSignupState({...signupState,[e.target.id]:e.target.value});
 
     const handleSubmit=(e)=>{
         e.preventDefault();
+     
         console.log(signupState)
+        
         // createAccount()
+
+        // const myForm = new FormData()
+        // myForm.append('name', signupState['name']);
+        // myForm.append('email', signupState['email']);
+        // myForm.append('password', signupState['password']);
+
+        // console.log(myForm);
+
+      //   for (let pair of myForm.entries()) {
+      //     console.log(pair[0] + ": " + pair[1]);
+      // }
+
+        dispatch(register(signupState));
       }
 
     

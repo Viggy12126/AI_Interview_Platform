@@ -1,6 +1,7 @@
 import { User } from "../models/User.js";
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { sendToken } from "../utils/sendToken.js";
+import ErrorHandler from "../utils/errorHandler.js";
 
 export const register= catchAsyncError(async (req,res,next)=>{
 
