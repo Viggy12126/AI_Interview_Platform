@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import toast, { Toaster } from 'react-hot-toast';
 import { loadUser } from './redux/actions/user';
 import { ProtectedRoute } from 'protected-route-react';
-
+import CoursePage from "./Components/Courses/CoursePage.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,8 +27,8 @@ function App() {
       // toast.error(error);
 
       toast(error, {
-        position: "top-right",
-        autoClose: 5000,
+        position: "top-center",
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -38,15 +38,15 @@ function App() {
        
         });
 
-      dispatch({ type: 'clearError' });
+      // dispatch({ type: 'clearError' });
     }
 
     if (message) {
       // toast.success(message);
 
       toast(message, {
-        position: "top-right",
-        autoClose: 5000,
+        position: "top-center",
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -55,7 +55,7 @@ function App() {
         theme: "light",
       
         });
-      dispatch({ type: 'clearMessage' });
+      // dispatch({ type: 'clearMessage' });
     }
   }, [dispatch, error, message]);
 
@@ -100,6 +100,15 @@ isAuthenticated={!isAuthenticated}
           }
           
           />
+
+<Route
+              path="/course/:id"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <CoursePage user={user} />
+                </ProtectedRoute>
+              }
+            />
 
         </Routes>
       </>

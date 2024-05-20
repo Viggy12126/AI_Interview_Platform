@@ -8,7 +8,8 @@ router.route('/getCourses').get(getAllCourses);
 
 router.route('/admin/createCourse').post(isAuthenticated,authorizeAdmin,createCourse);
 
-router.route('/admin/course/:id').post(isAuthenticated,authorizeAdmin,addQuestions)
-.get(isAuthenticated,authorizeAdmin,getQuestions).delete(isAuthenticated,authorizeAdmin,deleteCourse);
+router.route('/course/:id').get(isAuthenticated,getQuestions)
+
+router.route('/admin/course/:id').post(isAuthenticated,authorizeAdmin,addQuestions).delete(isAuthenticated,authorizeAdmin,deleteCourse);
 
 export default router;
