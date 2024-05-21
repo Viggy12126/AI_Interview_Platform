@@ -19,12 +19,17 @@ dispatch(logout());
     <div className='flex justify-between'>
 
         <div className='flex items-center justify-center  text-white text-2xl font-bold'>
+          <Link to={'/'}>
 <p>AI Interview</p>
+</Link>
         </div>
 
         <div className='flex items-center justify-center gap-4 o text-white text-2xl'>
 <p>Pricing</p>
+
+<Link to={'/courses'}>
 <p>Interviews</p>
+</Link>
         </div>
 
         <div className=' text-white text-2xl'>

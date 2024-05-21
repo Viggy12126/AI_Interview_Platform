@@ -12,6 +12,7 @@ import { ProtectedRoute } from 'protected-route-react';
 import CoursePage from "./Components/Courses/CoursePage.jsx";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Subscribe from "./Components/Payments/Subscribe.jsx";
 
 function App() {
 
@@ -105,7 +106,16 @@ isAuthenticated={!isAuthenticated}
               path="/course/:id"
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <CoursePage user={user} />
+                  <CoursePage isAuthenticated={isAuthenticated} user={user} />
+                </ProtectedRoute>
+              }
+            />
+
+<Route
+              path="/subscribe"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <Subscribe user={user}/>
                 </ProtectedRoute>
               }
             />
