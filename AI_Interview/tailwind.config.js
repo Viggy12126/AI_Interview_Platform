@@ -3,7 +3,12 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   darkMode: 'selector',
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'custom-blue': '#0a2640',
+        'custom-green':"#5cdb94",
+      }
+    },
   },
   plugins: [],
 }
