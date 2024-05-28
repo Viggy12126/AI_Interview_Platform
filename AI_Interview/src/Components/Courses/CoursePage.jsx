@@ -32,22 +32,7 @@ const CoursePage = ({isAuthenticated,user}) => {
         const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition()
     
-    // const openai = new OpenAI({apikey:apikey});
-    // console.log(openai);
-
-    // const speechFile = path.resolve("./output.mp3");
-
-    //  const main=async ()=> {
-    //   const mp3 = await openai.audio.speech.create({
-    //     model: "tts-1", 
-    //     voice: "onyx", 
-    //     input: `${ questions[index].question}`,
-    //   });
     
-    //   const buffer = Buffer.from(await mp3.arrayBuffer());
-    //   await fs.promises.writeFile(speechFile, buffer);
-    // }
-
   useEffect(()=>{
 
     console.log(answer);
