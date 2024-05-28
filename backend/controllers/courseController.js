@@ -1,6 +1,9 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { Course } from "../models/Course.js";
 import ErrorHandler from "../utils/errorHandler.js";
+import { feedback} from "../utils/openai.js";
+
+
 
 export const getAllCourses=catchAsyncError(async(req,res,next)=>{
 
@@ -112,6 +115,33 @@ export const deleteCourse = catchAsyncError(async (req, res, next) => {
       message: "Lecture Deleted Successfully",
     });
   });
+
+  export const speechToText= catchAsyncError(async (req,res,next)=>{
+
+    const {text}=req.body;
+
+const buffer=await convert(text);
+
+// console.log(buffer);
+  
+//   res.json({buffer});
+
+res.send(buffer);
+  })
+
+  export const postFeedback=async (req,res,next)=>{
+      
+    const {answer,question}=req.body;
+
+    // console.log(answer);
+    
+    const data=await feedback(answer,question);
+
+    // console.log(data);
+
+   res.json(data);
+
+  }
   
   
 

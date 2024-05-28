@@ -15,6 +15,20 @@ export const courseReducer = createReducer(
       state.error = action.payload;
     },
 
+    getSpeechRequest:state=>{
+      state.loading=true
+    },
+
+    getSpeechSuccess:(state,action)=>{
+      state.loading=false;
+      state.speech=action.payload;
+    },
+
+    getSpeechFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
     getQuestionRequest: state => {
       state.loading = true;
     },

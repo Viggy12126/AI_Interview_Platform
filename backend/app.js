@@ -19,6 +19,8 @@ app.use(
 );
 app.use(cookieParser());
 
+// console.log(process.env.OPEN_AI_API_KEY)
+
 // app.use(
 //   cors({
 //     origin: process.env.FRONTEND_URL,

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
-import { getCourseQuestions } from '../../redux/actions/course.js';
+import { getCourseQuestions, getSpeech } from '../../redux/actions/course.js';
 import Navbar from '../Navbar.jsx';
 import Webcam from 'react-webcam';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+// import fs from "fs"; 
+// import path from "path";
+// import OpenAI from "openai";
 
 const CoursePage = ({isAuthenticated,user}) => {
 
-    const {loading,questions}=useSelector(
+    const {loading,questions,speech}=useSelector(
         state => state.course
       );
 
@@ -21,13 +24,79 @@ const CoursePage = ({isAuthenticated,user}) => {
     const params = useParams();
     const [index,setIndex]=useState(0);
     const [feed,setFeed]=useState(false);
-    const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
+    const [feedback,setFeedback]=useState("");
+    const [rating,setRating]=useState("");
+    const [form,setForm]=useState({answer:'',question:''});
+    const [answer,setAnswer]=useState('');
+    const [question,setQuestion]=useState('');
+        const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition()
+    // const apikey='sk-proj-JiwjIcmrLB4qXVMMWzwQT3BlbkFJi4DqeMh9axUm0eEyMumr';
+    // const openai = new OpenAI({apikey:apikey});
+    // console.log(openai);
 
-    useEffect(()=>{
-        // console.log(params.id);
-   dispatch( getCourseQuestions(params.id));
+    // const speechFile = path.resolve("./output.mp3");
+
+    //  const main=async ()=> {
+    //   const mp3 = await openai.audio.speech.create({
+    //     model: "tts-1", 
+    //     voice: "onyx", 
+    //     input: `${ questions[index].question}`,
+    //   });
+    
+    //   const buffer = Buffer.from(await mp3.arrayBuffer());
+    //   await fs.promises.writeFile(speechFile, buffer);
+    // }
+
+  useEffect(()=>{
+
+    console.log(answer);
+    console.log(question);
+
+    setForm({ answer, question });
+   
+  },[answer,question])
+
+  useEffect(()=>{
+
+    const fetchData=async ()=>{
+      const response=await fetch('/api/v1/feedback',{
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify(form)
+      })
+
+      const data = await response.json();
+      console.log(data);
+      setFeedback(data.feedback);
+      setRating(data.rating);
+    }
+
+    if(form.answer!==''){
+    console.log(form);
+  fetchData();
+    }
+  },[form])
+
+    useEffect( ()=>{
+        // console.log("hii");
+     
+        
+   
+    dispatch( getCourseQuestions(params.id));
+      
+    
+     
+
+    // fetchData();
     },[dispatch,params.id])
+
+    // useEffect(()=>{
+   
+    //   dispatch(getSpeech(questions[index].question,params.id))
+    // },[dispatch,index])
 
     // if (
     //   user.role !== 'admin' &&
@@ -38,6 +107,10 @@ const CoursePage = ({isAuthenticated,user}) => {
 
     const handlestart=()=>{
       alert("Interview Started");
+
+    
+
+      // dispatch(getSpeech(questions[index].question,params.id));
       SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
 
     }
@@ -61,9 +134,36 @@ const CoursePage = ({isAuthenticated,user}) => {
       resetTranscript();
     }
 
-    const handlesubmit=()=>{
-      setFeed(true);
-      SpeechRecognition.stopListening();
+    const handlesubmit=async ()=>{
+   try {
+    setFeed(true);
+
+    
+
+    setAnswer(transcript);
+    setQuestion(questions[index].question);
+
+    setForm({answer:answer,question:question})
+
+   
+
+    // console.log(answer);
+    // console.log(question);
+    
+          // const response=await fetch('/api/v1/feedback',{
+          //   method:"POST",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body:JSON.stringify(formData)
+          // })
+    
+          // const data = await response.json();
+          // console.log(data);
+          SpeechRecognition.stopListening();
+   } catch (error) {
+    console.log(error);
+   }
     }
 
     if (!browserSupportsSpeechRecognition) {
@@ -85,6 +185,8 @@ const CoursePage = ({isAuthenticated,user}) => {
 
         <div className='w-[700px] h-[560px] my-10 mx-20  px-3 py-3 border-2 rounded-md bg-white   text-2xl'>
           <h1>Feedback of your answer</h1>
+          {feedback}
+          <p>The rating for this response on the scale of 10 would be {rating}</p>
         </div>
 
      
@@ -117,13 +219,15 @@ const CoursePage = ({isAuthenticated,user}) => {
     
     ):(<h1>No questions available</h1>)} */}
     
-    
+    {/* <audio>
+      {speech}
+    </audio> */}
       <div className='flex justify-between  m-auto my-5 '>
     
         <div className='w-2/4 px-20 '>
           <h1 className='text-white font-bold mb-10 text-2xl'>Question {index+1}</h1>
     
-          <p className='text-white mb-5'>{questions.length>0 && questions[index].question}</p>
+          <p className='text-white font-bold text-2xl mb-5'>{questions.length>0 && questions[index].question}</p>
           <p className='rounded-md bg-red-500 p-5'> 
             Caution: We kindly request that you refrain from refreshing
                         or clicking on backward or forward button on the page. Doing

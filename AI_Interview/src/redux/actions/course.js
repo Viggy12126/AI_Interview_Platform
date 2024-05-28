@@ -44,3 +44,34 @@ export const getAllCourses = () =>
       });
     }
   };
+
+  export const getSpeech=(text,id)=>async dispatch =>{
+
+    try {
+      dispatch({type:'getSpeechRequest'});
+
+      const res=await fetch(`/api/v1/course/${id}`,{
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify(text)
+      })
+
+      const audiodata=await res.blob();
+
+     
+
+      // if(data.success==false){
+      //   dispatch({ type: 'getSpeechFail', payload: audiodata.message });
+      //   return;
+      // }
+
+      dispatch({ type: 'getSpeechSuccess', payload: audiodata.data });
+
+     
+
+    } catch (error) {
+      dispatch({type:'getSpeechFail',payload:error.response.data.message})
+    }
+  }
