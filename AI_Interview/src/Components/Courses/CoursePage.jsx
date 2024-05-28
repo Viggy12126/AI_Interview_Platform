@@ -31,7 +31,7 @@ const CoursePage = ({isAuthenticated,user}) => {
     const [question,setQuestion]=useState('');
         const { transcript, browserSupportsSpeechRecognition, resetTranscript } =
     useSpeechRecognition()
-    // const apikey='sk-proj-JiwjIcmrLB4qXVMMWzwQT3BlbkFJi4DqeMh9axUm0eEyMumr';
+    
     // const openai = new OpenAI({apikey:apikey});
     // console.log(openai);
 
