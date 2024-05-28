@@ -2,4 +2,4 @@
 
 .env
 
-backend/config/config.env
+/config/config.env
