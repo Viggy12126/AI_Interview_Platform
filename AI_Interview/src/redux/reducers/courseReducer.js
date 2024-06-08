@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 export const courseReducer = createReducer(
-  { courses: [], questions: [] },
+  { courses: [], questions: [],isCoding:{} },
   {
     allCoursesRequest: state => {
       state.loading = true;
@@ -34,7 +34,8 @@ export const courseReducer = createReducer(
     },
     getQuestionSuccess: (state, action) => {
       state.loading = false;
-      state.questions = action.payload;
+      state.questions = action.payload.questions;
+      state.isCoding=action.payload.isCoding;
     },
     getQuestionFail: (state, action) => {
       state.loading = false;

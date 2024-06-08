@@ -26,9 +26,9 @@ const schema = new mongoose.Schema({
         enum: ["admin", "user"],
         default: "user",
       },
-      isPremium:{
-        type:Boolean,
-        default:false
+      subscription: {
+        id: String,
+        status: String,
       },
       createdAt: {
         type: Date,

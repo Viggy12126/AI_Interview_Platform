@@ -17,15 +17,16 @@ export const getAllCourses=catchAsyncError(async(req,res,next)=>{
 
 export const createCourse=catchAsyncError(async(req,res,next)=>{
 
-    const {title,difficulty,isPremium}=req.body;
+    const {title,difficulty,isPremium,isCoding}=req.body;
 
-    if (!title || !difficulty || !isPremium)
+    if (!title || !difficulty || !isPremium || !isCoding)
         return next(new ErrorHandler("Please add all fields", 400));
 
     await Course.create({
         title,
         difficulty,
-        isPremium
+        isPremium,
+        isCoding
     })
 
     res.status(200).json({
@@ -73,7 +74,8 @@ export const getQuestions=catchAsyncError(async(req,res,next)=>{
 
     res.status(200).json({
         success:true,
-        questions:course.questions
+        questions:course.questions,
+        isCoding:course.isCoding
     })
 
 })

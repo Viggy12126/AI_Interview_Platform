@@ -15,6 +15,11 @@ const schema=new mongoose.Schema({
         enum:["True","False"],
         required: [true, "Please enter subscription details"],
     },
+
+    isCoding:{
+        type:String,
+        enum:["True","False"],
+    },
     questions:[
         {
             question:{

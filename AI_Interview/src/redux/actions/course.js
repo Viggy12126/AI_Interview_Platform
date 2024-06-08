@@ -24,7 +24,7 @@ export const getAllCourses = () =>
   export const getCourseQuestions = id => async dispatch => {
     try {
 
-        console.log(id);
+        // console.log(id);
       dispatch({ type: 'getQuestionRequest' });
   
     //   const { data } = await axios.get(`/api/v1/course/${id}`, {
@@ -34,9 +34,9 @@ export const getAllCourses = () =>
     const res=await fetch(`/api/v1/course/${id}`)
     const data=await res.json();
 
-    console.log(data);
+    // console.log(data);
   
-      dispatch({ type: 'getQuestionSuccess', payload: data.questions });
+      dispatch({ type: 'getQuestionSuccess', payload: data});
     } catch (error) {
       dispatch({
         type: 'getQuestionFail',

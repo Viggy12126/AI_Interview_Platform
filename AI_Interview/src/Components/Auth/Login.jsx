@@ -1,11 +1,12 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { loginFields } from "../Constants/formFields";
 import FormAction from "./FormAction";
 // import FormExtra from "./FormExtra";
 import Input from "./Input";
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions/user';
+import { useDispatch,useSelector } from 'react-redux';
+import { loadUser, login } from '../../redux/actions/user';
+import { ToastContainer, toast } from 'react-toastify';
 
 const fields=loginFields;
 let fieldsState = {};
@@ -15,6 +16,10 @@ fields.forEach(field=>fieldsState[field.id]='');
 const Login = () => {
 
     const [loginState,setLoginState]=useState(fieldsState);
+    const { isAuthenticated, user, message, error, loading } = useSelector(
+        state => state.user
+      );
+
     const dispatch=useDispatch();
 
     const handleChange=(e)=>{
@@ -28,6 +33,14 @@ const Login = () => {
 
         
     }
+
+   
+    
+
+    // useEffect(()=>{
+    //     dispatch(loadUser())
+    //      },[dispatch])
+       
 
     //Handle Login API Integration here
     // const authenticateUser = () =>{

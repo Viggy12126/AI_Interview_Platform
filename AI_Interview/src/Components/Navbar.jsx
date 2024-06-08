@@ -1,12 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { logout } from '../redux/actions/user';
+
 
 const Navbar = ({isAuthenticated=false,user}) => {
 
   // const user=false;
   // const name="abc";
+
+  const {  message, error, loading } = useSelector(
+    state => state.user
+  );
 
   const dispatch=useDispatch();
 
@@ -15,8 +20,10 @@ dispatch(logout());
 
   }
 
+ 
+
   return (
-    <div className='flex justify-between'>
+    <div className=' flex justify-between'>
 
         <div className='flex items-center justify-center  text-white text-2xl font-bold'>
           <Link to={'/'}>
@@ -25,8 +32,9 @@ dispatch(logout());
         </div>
 
         <div className='flex items-center justify-center gap-4 o text-white text-2xl'>
+          <Link to={'/pricing'}>
 <p>Pricing</p>
-
+</Link>
 <Link to={'/courses'}>
 <p>Interviews</p>
 </Link>

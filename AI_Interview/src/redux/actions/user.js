@@ -112,3 +112,25 @@ export const logout = () => async dispatch => {
     dispatch({ type: 'logoutFail', payload: error.response.data.message });
   }
 };
+
+export const buySubscription= () => async dispatch => {
+
+
+  try {
+    dispatch({ type: 'buySubscriptionRequest' });
+
+    const res=await fetch('/api/v1/subscribe');
+
+    const data=await res.json();
+
+    dispatch({ type: 'buySubscriptionSuccess', payload: data.subscriptionId });
+
+  } catch (error) {
+    
+    dispatch({
+      type: 'buySubscriptionFail',
+      payload: error.response.data.message,
+    });
+    
+  }
+}
