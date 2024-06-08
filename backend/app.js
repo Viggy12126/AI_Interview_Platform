@@ -5,7 +5,7 @@ import cors from "cors";
   
 
 config({
-    path: "./config/config.env",
+    path: "./config/.env",
   });
 
 const app=express();
