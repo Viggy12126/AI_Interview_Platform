@@ -29,7 +29,9 @@ const speechFile = path.resolve("./speech.mp3");
 export const feedback=async (answer,question)=>{
 
   
-  let prompt = `Consider your self as a interviewer. This is question :- ${question} and this is my answer of this question :- ${answer}. Give me feedback on this answer. Also, give the rating on the scale from 0-10. Don't mention any where that you are an AI model and don't give any sample answers. Just give feedback and return in JSON format`;
+  let prompt = `Consider your self as an interviewer. This is question :- ${question} and this is my answer of this question :- ${answer}. Give me feedback on this answer. 
+  If the answer is a code written, then give me the feedback on its code, like corner cases, code readability etc.
+  Also, give the rating on the scale from 0-10. Don't mention any where that you are an AI model and don't give any sample answers. Just give feedback and return in JSON format`;
   const response = await openai.chat.completions.create({
     model : "gpt-3.5-turbo-1106",
     response_format : { "type": "json_object" },
