@@ -1,7 +1,7 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import { Course } from "../models/Course.js";
 import ErrorHandler from "../utils/errorHandler.js";
-import { feedback} from "../utils/openai.js";
+import { convert, feedback} from "../utils/openai.js";
 
 
 
@@ -124,9 +124,9 @@ export const deleteCourse = catchAsyncError(async (req, res, next) => {
 
 const buffer=await convert(text);
 
-// console.log(buffer);
+console.log(buffer);
   
-//   res.json({buffer});
+  res.json({data:buffer});
 
 res.send(buffer);
   })

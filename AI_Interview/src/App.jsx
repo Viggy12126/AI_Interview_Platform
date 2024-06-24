@@ -15,6 +15,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Subscribe from "./Components/Payments/Subscribe.jsx";
 import Price from "./Components/Price/Price.jsx";
+import PaymentSuccess from "./Components/Payments/PaymentSuccess.jsx";
+import PaymentFail from "./Components/Payments/PaymentFail.jsx";
 
 
 function App() {
@@ -140,14 +142,18 @@ isAuthenticated={!isAuthenticated}
               }
             />
 
-<Route
+{/* <Route
               path="/subscribe"
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
                   <Subscribe user={user}/>
                 </ProtectedRoute>
               }
-            />
+            /> */}
+
+<Route path="/paymentsuccess" element={<PaymentSuccess />} />
+
+<Route path="/paymentfail" element={<PaymentFail />} />
 
         </Routes>
       </>

@@ -11,20 +11,20 @@ const openai = new OpenAI({apiKey:process.env.OPENAI_API_KEY});
 
 const speechFile = path.resolve("./speech.mp3");
 
-// export const convert=async (text)=>{
+export const convert=async (text)=>{
 
-//   console.log(process.env.OPENAI_API_KEY);
+  // console.log(process.env.OPENAI_API_KEY);
 
-//     const mp3 = await openai.audio.speech.create({
-//         model: "tts-1",
-//         voice: "alloy",
-//         input: text,
-//       });
-//       // console.log(speechFile);
-//       const buffer = Buffer.from(await mp3.arrayBuffer());
-//       await fs.promises.writeFile(speechFile, buffer);
-//       return buffer;
-// }
+    const mp3 = await openai.audio.speech.create({
+        model: "tts-1",
+        voice: "alloy",
+        input: text,
+      });
+      // console.log(speechFile);
+      const buffer = Buffer.from(await mp3.arrayBuffer());
+      await fs.promises.writeFile(speechFile, buffer);
+      return buffer;
+}
 
 export const feedback=async (answer,question)=>{
 
@@ -46,7 +46,7 @@ export const feedback=async (answer,question)=>{
 });
 
 if (!response || !response.choices || response.choices.length === 0) {
-  throw new Error('Invalid response from OpenAI API');
+  throw new Error('Invalid response');
 }
 
 const generatedText = response.choices[0].message.content.trim();

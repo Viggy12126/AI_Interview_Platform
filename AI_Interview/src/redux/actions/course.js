@@ -67,6 +67,8 @@ export const getAllCourses = () =>
       //   return;
       // }
 
+      console.log(audiodata);
+
       dispatch({ type: 'getSpeechSuccess', payload: audiodata.data });
 
      

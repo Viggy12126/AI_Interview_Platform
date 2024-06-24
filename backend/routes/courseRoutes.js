@@ -11,7 +11,7 @@ router.route('/admin/createCourse').post(isAuthenticated,authorizeAdmin,createCo
 
 router.route('/course/:id').get(isAuthenticated,getQuestions);
 
-router.route('/course/:id').post(isAuthenticated,speechToText);
+// router.route('/course/:id').post(isAuthenticated,speechToText);
 
 router.route('/admin/course/:id').post(isAuthenticated,authorizeAdmin,addQuestions).delete(isAuthenticated,authorizeAdmin,deleteCourse);
 

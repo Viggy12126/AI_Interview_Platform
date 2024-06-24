@@ -130,24 +130,7 @@ const CodeEditor = () => {
     }
   };
 
-  // const getLanguages=async ()=>{
-  //   const options = {
-  //     method: 'GET',
-  //     url: 'https://judge0-extra-ce.p.rapidapi.com/languages/63',
-  //     headers: {
-  //       'x-rapidapi-key': 'a4c3594ffdmshd5658bdeb018a1ep193cfejsn2ea83bf4f97d',
-  //       'x-rapidapi-host': 'judge0-extra-ce.p.rapidapi.com'
-  //     }
-  //   };
-    
-  //   try {
-  //     const response = await axios.request(options);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-    
-  // }
+ 
   
   const handleCompile = () => {
 
@@ -242,6 +225,7 @@ const CodeEditor = () => {
       defineTheme(theme.value).then((_) => setTheme(theme));
     }
   }
+
   useEffect(() => {
     defineTheme("oceanic-next").then((_) =>
       setTheme({ value: "oceanic-next", label: "Oceanic Next" })

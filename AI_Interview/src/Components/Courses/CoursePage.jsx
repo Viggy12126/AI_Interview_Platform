@@ -71,10 +71,11 @@ const CoursePage = ({isAuthenticated,user}) => {
     // fetchData();
     },[dispatch,params.id])
 
-    // useEffect(()=>{
+    useEffect(()=>{
    
-    //   dispatch(getSpeech(questions[index].question,params.id))
-    // },[dispatch,index])
+      if(question!=='')
+      dispatch(getSpeech(questions[index].question,params.id))
+    },[dispatch,index])
 
 
 
@@ -124,6 +125,8 @@ const CoursePage = ({isAuthenticated,user}) => {
     if (!browserSupportsSpeechRecognition) {
       return null;
     }
+
+    console.log(speech);
 
   return (
 
@@ -176,7 +179,7 @@ const CoursePage = ({isAuthenticated,user}) => {
   
 ):(<div className='dark dark:bg-slate-800'>
 
-  
+
 
 <div className=' px-40 py-6 dark dark:bg-slate-950 lg:gap-40'>
 <Navbar isAuthenticated={isAuthenticated} user={user}/>

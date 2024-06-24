@@ -85,7 +85,7 @@ const Courses = () => {
                 <h2 className='text-white text-4xl'>Our best interviews for your <span className="text-blue-500">preparation</span></h2>
             </div>
 
-            <div className='flex flex-wrap gap-5 overflow-hidden'>
+            <div className='flex flex-wrap gap-5 mx-30'>
                 {/* All Courses */}
                 {courses && courses.map(course => (
                     <React.Fragment key={course?._id}>
@@ -102,7 +102,16 @@ const Courses = () => {
                                         </>
                                     )}
                                     <h1 className='text-white font-bold'>{course.title}</h1>
-                                    <p className='text-green-500 font-bold'>{course.difficulty}</p>
+
+{course.difficulty === 'Easy' ? (
+  <p className='text-green-500 font-bold'>{course.difficulty}</p>
+) : course.difficulty === 'Medium' ? (
+  <p className='text-yellow-500 font-bold'>{course.difficulty}</p>
+) : (
+  <p className='text-red-500 font-bold'>{course.difficulty}</p>
+)}
+
+                                   
                                     <h1 className='font-bold text-white'>These are {course.title} questions</h1>
                                     {user?.subscription.status === "active" ? (
                                       
