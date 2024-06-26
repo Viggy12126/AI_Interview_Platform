@@ -15,7 +15,7 @@ const Courses = () => {
     const { isAuthenticated, user } = useSelector(
         state => state.user
     );
-
+ 
     const dispatch = useDispatch();
 
     useEffect(() => {
