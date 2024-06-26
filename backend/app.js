@@ -2,11 +2,14 @@ import express from "express";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
   
 
 config({
     path: "./config/.env",
   });
+
+  const __dirname=path.resolve();
 
 const app=express();
 
@@ -39,6 +42,11 @@ app.use("/api/v1", user );
 app.use("/api/v1",course);
 app.use("/api/v1",payment)
 
+app.use(express.static(path.join(__dirname, "/AI_Interview/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "AI_Interview", "dist", "index.html"));
+});
 export default app;
 
 app.use(ErrorMiddleware);

@@ -124,7 +124,7 @@ export const deleteCourse = catchAsyncError(async (req, res, next) => {
 
 const buffer=await convert(text);
 
-console.log(buffer);
+// console.log(buffer);
   
   res.json({data:buffer});
 
