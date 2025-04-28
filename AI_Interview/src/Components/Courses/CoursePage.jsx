@@ -33,7 +33,7 @@ const CoursePage = ({isAuthenticated,user}) => {
   useEffect(()=>{
 
     // console.log(answer);
-    // console.log(question);
+    console.log(question);
 
     setForm({ answer, question });
    

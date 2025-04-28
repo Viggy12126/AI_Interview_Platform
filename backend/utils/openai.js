@@ -3,13 +3,17 @@ import path from "path";
 import OpenAI from "openai";
 import {config} from 'dotenv';
 
+
+
 config({
-  path:'./config/.env',
+  path:'./backend/config/.env',
 });
+
 
 const openai = new OpenAI({apiKey:process.env.OPENAI_API_KEY});
 
 const speechFile = path.resolve("./speech.mp3");
+
 
 export const convert=async (text)=>{
 

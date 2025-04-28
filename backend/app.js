@@ -6,10 +6,11 @@ import path from "path";
   
 
 config({
-    path: "./config/.env",
+    path: './backend/config/.env',
   });
 
   const __dirname=path.resolve();
+  console.log(__dirname)
 
 const app=express();
 
@@ -21,6 +22,7 @@ app.use(
   })
 );
 app.use(cookieParser());
+
 
 // console.log(process.env.OPEN_AI_API_KEY)
 

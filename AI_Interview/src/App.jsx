@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Courses from "./Components/Courses/Courses";
 import Header from "./Components/Header"
 import Navbar from "./Components/Navbar"
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import toast, { Toaster } from 'react-hot-toast';
@@ -94,7 +93,6 @@ function App() {
          } 
           />
 
-
           <Route path="/pricing" element={
              <div className="min-h-screen px-40 py-6 dark dark:bg-slate-950 flex flex-col lg:gap-20">
                 
@@ -105,11 +103,8 @@ function App() {
 
              </ProtectedRoute>
            </div>
-          
-          
+                   
           }/>
-
-       
 
           <Route path="/login" element={
           <ProtectedRoute 

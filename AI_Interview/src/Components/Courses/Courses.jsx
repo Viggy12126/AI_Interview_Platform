@@ -56,6 +56,8 @@ const Courses = () => {
     //   dispatch(loadUser())
     //    },[dispatch])
 
+    console.log(user);
+
     return (
         <div className="items-center flex flex-col overflow-hidden">
             <ToastContainer />
@@ -92,15 +94,7 @@ const Courses = () => {
                         {course && course.isPremium === "True" && (
                             <div className='dark:bg-slate-800 flex gap-3 rounded-3xl items-center justify-center w-[250px] overflow-hidden shadow-xl'>
                                 <div className='flex flex-col justify-center px-14 py-7 gap-5 text-xl'>
-                                    {user?.subscription.status === "active" ? (
-                                         <div className='flex justify-center h-[6px]'>
-                                        <FaLock className=''/>
-
-                                        </div>
-                                    ):(
-                                        <>
-                                        </>
-                                    )}
+                                 
                                     <h1 className='text-white font-bold'>{course.title}</h1>
 
 {course.difficulty === 'Easy' ? (
@@ -113,17 +107,11 @@ const Courses = () => {
 
                                    
                                     <h1 className='font-bold text-white'>These are {course.title} questions</h1>
-                                    {user?.subscription.status === "active" ? (
-                                      
-
-<Link to={`/course/${course._id}`}>
-<button className='bg-blue-600 hover:bg-blue-800 text-white text-2xl rounded-xl px-2 py-1'>Try now</button>
-</Link>
-                                    ) : (
+                                   
                                         <Link to={`/pricing`}>
                                         <button className='bg-blue-600 hover:bg-blue-800 text-white text-2xl rounded-xl px-2 py-1'>Try now</button>
                                     </Link>
-                                    )}
+                                    
                                 </div>
                             </div>
                         )}

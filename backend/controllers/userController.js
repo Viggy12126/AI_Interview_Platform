@@ -6,7 +6,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 export const register= catchAsyncError(async (req,res,next)=>{
 
     const {name,email,password}=req.body;
-    // console.log(email);
+    console.log(name);
 
     
   if (!name || !email || !password)
@@ -28,6 +28,8 @@ export const register= catchAsyncError(async (req,res,next)=>{
 //     success:true,
 //     user,
 // })
+
+console.log(user);
 
 sendToken(res, user, "Registered Successfully", 201);
 
@@ -69,7 +71,7 @@ export const login = catchAsyncError(async (req, res, next) => {
   export const getMyProfile = catchAsyncError(async (req, res, next) => {
     const user = await User.findById(req.user._id);
 
-    // console.log(user);
+    console.log(user);
   
     res.status(200).json({
       success: true,
